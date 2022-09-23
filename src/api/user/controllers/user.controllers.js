@@ -73,4 +73,8 @@ const profile = async (req, res) => {
   }
 };
 
-export { createUser, loginUser, profile };
+const sayHi = (_, res) => {
+  res.json({ hi: "hello world" });
+};
+
+export { createUser, loginUser, profile, sayHi };

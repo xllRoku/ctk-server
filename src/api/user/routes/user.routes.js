@@ -4,12 +4,12 @@ import {
   createUser,
   loginUser,
   profile,
+  sayHi,
 } from "../controllers/user.controllers.js";
 
 const router = express.Router();
 
-// router.get("/", sayHi);
-
+router.get("/", sayHi);
 router.post("/account/sign-up", createUser);
 router.post("/account/sign-in", loginUser);
 router.get("/profile", checkAuth, profile);

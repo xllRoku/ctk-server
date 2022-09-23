@@ -29,7 +29,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzJiOTU0N
 
 
 ###
-POST https://ctk-server-62hr.vercel.app/api/v1/user/account/sign-up
+POST https://node-vercel-q54d.vercel.app/api/v1/user/account/sign-up
 Content-Type: application/json
 
 {
