@@ -1,0 +1,28 @@
+
+### GET
+http://localhost:5000/api/v1/user/
+
+### sign up
+POST http://localhost:5000/api/v1/user/account/sign-up
+Content-Type: application/json
+
+{
+    "username": "jose david",
+    "email": "jhinlmlz@gmail.com",
+    "password": "123456789"
+}
+
+
+### sign in
+POST http://localhost:5000/api/v1/user/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "jhinlmlz@gmail.com",
+    "password": "123456789"
+}
+
+### valitade token
+http://localhost:5000/api/v1/user/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzJiOTU0NWFkMzU2ODhhNjljZWUyMWEiLCJpYXQiOjE2NjM4MDA2NDUsImV4cCI6MTY2MzgwMTU0NX0.MTpdlPmDvjzBJG7Kqx0jrlwLZS0sv9GyRfafPZkiEjY
