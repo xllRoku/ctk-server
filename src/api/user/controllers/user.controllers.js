@@ -1,5 +1,6 @@
 import { User } from "../models/user.model.js";
 import { generateJWT } from "../../../helpers/generateJWT.js";
+import { refreshToken } from "../../../helpers/refreshToken.js";
 
 const createUser = async (req, res) => {
   try {
@@ -7,9 +8,10 @@ const createUser = async (req, res) => {
 
     const user = new User({ username, password, email });
 
-    const { token } = generateJWT(user._id);
+    const { token, expiresIn } = generateJWT(user._id);
+    refreshToken(user._id, res);
 
-    user.token = generateJWT(user._id);
+    user.token = token;
     const userWithToken = await User.findOneAndUpdate(
       { email },
       { token: user.token },
@@ -19,7 +21,11 @@ const createUser = async (req, res) => {
 
     // const token = userWithToken.token;
 
-    return res.status(202).json({ message: "Usuario creado con éxito" });
+    return res.status(202).json({
+      message: "Usuario creado con éxito",
+      token: token,
+      expiresIn: expiresIn,
+    });
   } catch (error) {
     if (error.code === 11000) {
       const msgError = new Error("Ya existe este usuario");
@@ -35,14 +41,14 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     let user = await User.findOne({ email });
     if (!user) {
-      const msgError = new Error("Error del servidor");
+      const msgError = new Error("El usuario no existe");
       return res.status(404).json({ message: msgError.message });
     }
 
     const correctPassword = await user.comparePassword(password);
 
     if (!correctPassword) {
-      const msgError = new Error("Error del servidor");
+      const msgError = new Error("Contraseña incorrecta");
       return res.status(404).json({ message: msgError.message });
     }
 
