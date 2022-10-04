@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "email": "jhinlmlz@gmail.com",
-    "password": "123456789"
+    "password": "123456"
 }
 
 ### valitade token
@@ -35,5 +35,14 @@ Content-Type: application/json
 {
     "username": "jose david",
     "email": "javierklab@gmail.com",
+    "password": "123456789"
+}
+
+###
+POST https://ctk-server.herokuapp.com/api/v1/user/account/sign-in
+Content-Type: application/json
+
+{
+    "email": "jhin@gmail.com",
     "password": "123456789"
 }
